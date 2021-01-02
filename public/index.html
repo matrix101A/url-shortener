@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+    />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"
+      integrity="sha512-bZS47S7sPOxkjU/4Bt0zrhEtWx0y0CRkhEp8IckzK+ltifIIE9EMIMTuT/mEzoIMewUINruDBIR/jJnbguonqQ=="
+      crossorigin="anonymous"
+    ></script>
+    <title>Document</title>
+    <script>
+      function genShort(event) {
+        event.preventDefault();
+        const userName = document.getElementById("email").value;
+        const password = document.getElementById("pwd").value;
+        const short = document.getElementById("short").value;
+        const url = document.getElementById("url").value;
+        alert("sending data");
+        const data = { userName, password, short, url };
+        console.log(data);
+        axios
+          .post("/admin/urls", data)
+          .then((response) => {
+            alert("GENERATED !");
+          })
+          .catch((e) => {
+            alert(e);
+          });
+      }
+    </script>
+  </head>
+
+  <body>
+    <div class="container">
+      <h2>Vertical (basic) form</h2>
+      <form onsubmit="genShort(event)">
+        <div class="form-group">
+          <label for="email">Email address:</label>
+          <input type="email" class="form-control" id="email" />
+        </div>
+        <div class="form-group">
+          <label for="pwd">Password:</label>
+          <input type="password" class="form-control" id="pwd" />
+        </div>
+
+        <div class="form-group">
+          <label for="short">Short:</label>
+          <input type="text" class="form-control" id="short" />
+        </div>
+        <div class="form-group">
+          <label for="url">Compelete URL :</label>
+          <input type="text" class="form-control" id="url" />
+        </div>
+
+        <button type="submit" class="btn btn-default">Submit</button>
+      </form>
+    </div>
+  </body>
+</html>
